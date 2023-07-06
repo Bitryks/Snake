@@ -17,7 +17,7 @@ void setup()
     x = width / 2 - 1;
     y = height / 2 - 1;
     fruitX = rand() % width;
-    fruitX = rand() % height;
+    fruitY = rand() % height;
     score = 0;
 
 
@@ -50,7 +50,7 @@ void draw()
 
             cout << "#";
         cout << endl;
-        Sleep(200);
+        cout << "Score:" << score << endl;
     
 }
 
@@ -96,6 +96,15 @@ void Logic()
         break;
          
     }
+    if ( x > width || x < 0 || y > height || y < 0 )
+        gameOver = true;
+    if (x == fruitX && y == fruitY)
+    {
+        score += 10;
+        fruitX = rand() % width;
+        fruitY = rand() % height;
+    }
+
 }
 
 int main()
@@ -106,7 +115,9 @@ int main()
         draw();
         input();
         Logic();
+        Sleep(200);
     }
     return 0;
     
 }
+
